@@ -1,0 +1,118 @@
+<html>
+<head>
+    <title>Crunch</title>
+    <style>
+
+:root {
+    --transition-time: 2.0s;
+    --background-color: #873e23;
+    --ground-color: #0ed10e;
+    font-family: system-ui;
+    font-size: 1.5rem;
+}
+
+
+body {
+    margin: 0;
+    width: 100%;
+    display: grid;
+    gap: 3px;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    background-color: var(--background-color);
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.target {
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+
+.target:hover {
+    z-index: 2;
+}
+
+.card {
+    border-radius: 6px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--ground-color);
+    color: var(--ground-color);
+    transform: scaleX(-1.0);
+    text-align: center;
+    padding-top: 2rem;
+    opacity: 1;
+    border: 6px solid black;
+    transition:
+        background-color calc(var(--transition-time) / 2) step-end,
+        color calc(var(--transition-time) / 2) step-end,
+        border calc(var(--transition-time) / 2) step-end,
+        transform var(--transition-time) linear,
+        rotate var(--transition-time) linear;
+}
+
+.target:hover > .card {
+    opacity: 0.8;
+    transform: scaleX(1.0);
+    rotate: 315deg;
+    background-color: white;
+    color: black;
+    border: 6px solid gold;
+}
+
+.target:nth-child(3n):hover > .card {
+    border-color: red;
+}
+    </style>
+</head>
+<body>
+    <div class="target"><div class="card">CRUNCH</div></div>
+    <div class="target"><div class="card">UNDER</div></div>
+    <div class="target"><div class="card">FOOT</div></div>
+    <div class="target"><div class="card">CRUNCH</div></div>
+    <div class="target"><div class="card">UNDER</div></div>
+    <div class="target"><div class="card">FEET</div></div>
+    <div class="target"><div class="card">CRUNCH</div></div>
+    <div class="target"><div class="card">UNDER</div></div>
+    <div class="target"><div class="card">PRESSURE</div></div>
+    <div class="target"><div class="card">CRUNCH</div></div>
+    <div class="target"><div class="card">UNDER</div></div>
+    <div class="target"><div class="card">WATER</div></div>
+    <div class="target"><div class="card">CRUNCH</div></div>
+    <div class="target"><div class="card">UNDER</div></div>
+    <div class="target"><div class="card">HOPE</div></div>
+    <div class="target"><div class="card">CRUNCH</div></div>
+    <div class="target"><div class="card">UNDER</div></div>
+    <div class="target"><div class="card">SHOES</div></div>
+    <div class="target"><div class="card">CRUNCH</div></div>
+    <div class="target"><div class="card">UNDER</div></div>
+    <div class="target"><div class="card">CHEESE</div></div>
+    <div class="target"><div class="card">CRUNCH</div></div>
+    <div class="target"><div class="card">UNDER</div></div>
+    <div class="target"><div class="card">ALL</div></div>
+    <div class="target"><div class="card">CRUNCH</div></div>
+    <div class="target"><div class="card">UNDER</div></div>
+    <div class="target"><div class="card">ETC</div></div>
+    <div class="target"><div class="card">CRUNCH</div></div>
+    <div class="target"><div class="card">UNDER</div></div>
+    <div class="target"><div class="card">DREAMS</div></div>
+    <div class="target"><div class="card">CRUNCH</div></div>
+    <div class="target"><div class="card">UNDER</div></div>
+    <div class="target"><div class="card">EXPECTATIONS</div></div>
+    <div class="target"><div class="card">CRUNCH</div></div>
+    <div class="target"><div class="card">UNDER</div></div>
+    <div class="target"><div class="card">THIS</div></div>
+    <div class="target"><div class="card">CRUNCH</div></div>
+    <div class="target"><div class="card">UNDER</div></div>
+    <div class="target"><div class="card">LOVE</div></div>
+    <div class="target"><div class="card">CRUNCH</div></div>
+    <div class="target"><div class="card">UNDER</div></div>
+    <div class="target"><div class="card">GROUND</div></div>
+    <div class="target"><div class="card">CRUNCH</div></div>
+    <div class="target"><div class="card">UNDER</div></div>
+    <div class="target"><div class="card">SKIES</div></div>
+</body>
+</html>
