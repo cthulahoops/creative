@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <style>
+      button {
+            font: inherit;
+            padding: 0.5em 1em;
+            margin: 0.5em;
+      }
+
+      .bar { 
+          border: 1px solid black;
+          width: 200px;
+          height: 20px;
+      }
+
+      .progress {
+          width: 0;
+          height: 100%;
+      }
+
+      .widget {
+          position: absolute;
+          top: 300px;
+          margin-left: 200px;
+          margin-right: 200px;
+      }
+    </style>
+
+<script>
+    function clamp(x, min, max) {
+        if (x < min) {
+            return min;
+        }
+        if (x > max) {
+            return max;
+        }
+        return x;
+    }
+
+    function progressColor(progress) {
+        if (progress < 0) {
+            return 'white';
+        }
+        return 'hsl(' + 60 * Math.floor(progress / 100) + ',50%,50%)';
+    }
+
+    function barWidth(progress) {
+        return clamp(progress - 500, 200, 700);
+    }
+
+    function rotation(progress) {
+        return clamp((progress - 1200) / 2, 0, 360);
+    }
+
+    function barHeight(progress) {
+        return clamp((progress - 1200 - 720) / 5, 20, 300);
+    }
+
+    function progress_bar() {
+        return {
+        progress: 0,
+        phase: 0,
+        tick() {
+            this.progress += 1 + (this.phase * 2);
+            if (this.progress > 1200 + 720 + (280 * 5)) {
+                this.phase += 1;
+                this.progress = 0;
+                this.stop();
+            }
+        },
+        start() {
+            if (this.timer) {
+                return;
+            }
+            this.timer = setInterval(() => { this.tick() }, 15);
+        }, 
+        stop() {
+            clearInterval(this.timer)
+            this.timer = null
+        },
+        startText() {
+            if (this.phase === 0) {
+                return 'Start';
+            } else {
+                return 'Start (Phase ' + (this.phase + 1) + ' of ' + (this.phase * 4) + ')';
+            }
+        }
+      }
+    }
+
+    function toCss(obj) {
+        return Object.keys(obj).map(key => {
+            return key + ':' + obj[key];
+        }).join(';');
+    }
+</script>
+
+</head>
+
+<body>
+
+    <div class="widget" x-data="progress_bar()">
+        <div class="bar" x-bind:style="toCss({
+                'transform': 'rotate(' + rotation(progress) + 'deg)',
+                'width': barWidth(progress) + 'px',
+                'height': barHeight(progress) + 'px',
+                'background-color': progressColor(progress - 100)})">
+            <div class="progress" x-bind:style="toCss({ 'width': (progress % 100) + '%', 'background-color': progressColor(progress) })"></div>
+        </div>
+
+        <button x-on:click="start()" x-text="startText()">Start</button>
+        <button x-on:click="stop()">Stop</button>
+    </div>
+</body>
+</html>
